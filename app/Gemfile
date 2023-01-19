@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# A Ruby client that tries to match Redis' API one-to-one, while still providing an idiomatic interface.
+gem 'redis', '~> 5.0', '>= 5.0.6'
+
+# Thor is a toolkit for building powerful command-line interfaces.
+gem 'thor', '~> 0.19.1'

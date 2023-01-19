@@ -1,0 +1,32 @@
+version: "3.5"
+services:
+  redis:
+    image: redis:7.0.8-alpine
+    container_name: redis
+    env_file: .env
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - redis
+
+  app:
+    build: ./app
+    container_name: ruby
+    env_file: .env
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+    volumes:
+      - ./app:/usr/src/app
+    networks:
+      - redis
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:
+    
+networks:
+  redis:
